@@ -25,7 +25,7 @@ dataset.rename({'full_text': 'text'}, axis=1, inplace=True)
 dataset = preprocess(dataset)
 
 # %% [code] {"execution":{"iopub.status.busy":"2022-09-26T10:22:52.200146Z","iopub.execute_input":"2022-09-26T10:22:52.201106Z","iopub.status.idle":"2022-09-26T10:22:52.211507Z","shell.execute_reply.started":"2022-09-26T10:22:52.201061Z","shell.execute_reply":"2022-09-26T10:22:52.210538Z"}}
-model_name = 'microsoft/deberta-v3-large'
+model_name = 'microsoft/deberta-v3-small'
 test_size = 0.2
 max_length = 200
 
@@ -67,7 +67,8 @@ for d in [d1, d2, d3, d4, d5, d6]:
 # %% [code] {"execution":{"iopub.status.busy":"2022-09-26T10:22:52.228477Z","iopub.execute_input":"2022-09-26T10:22:52.229295Z","iopub.status.idle":"2022-09-26T10:23:12.422106Z","shell.execute_reply.started":"2022-09-26T10:22:52.229253Z","shell.execute_reply":"2022-09-26T10:23:12.420961Z"}}
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSequenceClassification.from_pretrained(model_name,
-                                                           num_labels=1).to("cpu")
+                                                           num_labels=1,
+                                                           problem_type="regression").to("cpu")
 
 import os
 
